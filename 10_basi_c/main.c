@@ -20,4 +20,6 @@ int main(){
 
     printf("union a: %d (un paciugo perche' ho assegnato b e a e b non possono coesistere)\n", u1.a);
     printf("union b: %f\n", u1.b);
+
+    return 0;
 }
