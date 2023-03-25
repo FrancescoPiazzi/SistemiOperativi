@@ -1,6 +1,0 @@
-run = ["basi_c", "stringhe.c"]
-
-entrypoint = "stringhe.c"
-
-[nix]
-channel = "stable-22_11"
