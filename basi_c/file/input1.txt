@@ -1,0 +1,7 @@
+pino gino 1 3
+dino nino 2 2
+fino rino 2 1
+mino tino 1 4
+gino fino 1 1
+vino rino 4 1
+lino tino 3 3
