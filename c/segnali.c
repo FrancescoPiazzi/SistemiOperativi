@@ -24,6 +24,8 @@ void my_handler2(int s){
 
 void alarm_handler(int s){
     printf("sveglia\n");
+    printf("sblocco lo user signal 2");
+    sigprocmask(SIG_UNBLOCK);
 }
 
 
@@ -47,6 +49,9 @@ int main(){
         // non usare alarm() e sleep() assieme perchè usano lo stesso segnale
         // quindi fanno casino
         alarm(3);
+
+        sigprocmask(SIG_BLOCK);
+
         while(1){
             // UwU
         }
