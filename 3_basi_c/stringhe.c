@@ -1,9 +1,3 @@
-/*
-3. Realizzare funzioni per stringhe char *stringrev(char * str) (inverte ordine
-caratteri) e int stringpos(char * str, char chr) (cerca chr in str e restituisce la
-posizione)
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -28,7 +22,7 @@ int main(int argc, char **argv){
 			break;
 		}
 	}
-	printf("la stringa %s e' un argomento valido\n", found ? "" : "non ");
+	printf("la stringa%se' un argomento valido\n", found ? " " : " non ");
 	
 	char *reverse = stringrev(argv[1]);
 	printf("il suo contrario e': \"%s\"\n", reverse);
