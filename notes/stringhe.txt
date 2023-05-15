@@ -1,0 +1,6 @@
+char * strcat(char *dest, const char *src) // aggiunge src in coda a dest
+char * strchr(const char *str, int c) // cerca la prima occorrenza di c in str
+int strcmp(const char *str1, const char *str2) // confronta str1 con str2
+size_t strlen(const char *str) // calcola la lunghezza di str
+char * strcpy(char *dest, const char *src) // copia la stringa src in dst
+char * strncpy(char *dest, const char *src, size_t n) // copia n caratteri dalla stringa src in dst

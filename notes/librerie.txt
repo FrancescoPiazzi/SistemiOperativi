@@ -1,0 +1,6 @@
+stdio.h:  FILE, EOF, stderr, stdin, stdout, fclose()
+stdlib.h:  atof(), atoi(), malloc(), free(), exit(), system(), rand()
+string.h: memset(), memcpy(), strncat(), strcmp(), strlen()
+math.h:  sin(), cos(), sqrt(), floor()
+unistd.h:  STDOUT_FILENO, read(), write(), fork(), pipe()
+fcntl.h:  creat(), open()

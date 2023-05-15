@@ -1,6 +1,10 @@
-# Creare un makefile con una regola help di default che mostri una nota
-# informativa, una regola backup che crei un backup di una cartella appendendo
-# “.bak” al nome e una restore che ripristini il contenuto originale.
-# Per definire la cartella sorgente passarne il nome come variabile, ad esempio:
-# make -f mf-backup FOLDER=...
-# la variabile FOLDER è disponibile dentro il makefile
+help:
+	@echo "uso:\n  make help\n  make backup\n  make restore"
+
+backup:
+	@rm -rf $(FOLDER).bak
+	@cp -r $(FOLDER) $(FOLDER).bak
+
+restore:
+	@rm -rf $(FOLDER)
+	@cp -r $(FOLDER).bak $(FOLDER)

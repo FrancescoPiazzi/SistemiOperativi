@@ -1,0 +1,1 @@
+[ -f $DATA ] && echo $(( $(cat $DATA) )) || echo "?" 
