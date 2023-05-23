@@ -16,7 +16,7 @@ void my_handler2(int s){
         printf("segnali user ricevuti fino ad ora: %d\n", ++received);
     }
     else{
-        printf("hai rotto il cazzo\n");
+        printf("hai rotto\n");
         signal(SIGUSR1, SIG_IGN);
         signal(SIGUSR2, SIG_IGN);
     }
@@ -24,8 +24,12 @@ void my_handler2(int s){
 
 void alarm_handler(int s){
     printf("sveglia\n");
-    printf("sblocco lo user signal 2");
-    sigprocmask(SIG_UNBLOCK);
+    printf("sblocco lo user signal 2\n");
+
+    sigset_t st;
+    sigemptyset(&st);
+    sigaddset(&st, SIGUSR2);
+    sigprocmask(SIG_UNBLOCK, &st, NULL);
 }
 
 
@@ -38,23 +42,27 @@ int main(){
 
     signal(SIGALRM, alarm_handler);
 
-
     printf("sono immune a ctrl+C e a ctrl+Z, ma puoi uccidermi con il comando kill %d\n", getpid());
 
+    printf("blocco lo user signal 2, si sbloccherà tra poco\n");
+    
+    sigset_t st;
+    sigemptyset(&st);
+    sigaddset(&st, SIGUSR2);
+    sigprocmask(SIG_BLOCK, &st, NULL);
+
+    // alarm_handler(82);
+
+    // alarm non può essere messa in coda (più sveglie settate assieme)
+    // se lo fai viene cancellata quella che c'era
+    // reimpostata quella nuova e ritornati i secondi che mancavano
+    // alla chiamata di quella appena eliminata
+    // non usare alarm() e sleep() assieme perchè usano lo stesso segnale
+    // quindi fanno casino
+    alarm(10);
+
     while(1){
-        // alarm non può essere messa in coda (più sveglie settate assieme)
-        // se lo fai viene cancellata quella che c'era
-        // reimpostata quella nuova e ritornati i secondi che mancavano
-        // alla chiamata di quella appena eliminata
-        // non usare alarm() e sleep() assieme perchè usano lo stesso segnale
-        // quindi fanno casino
-        alarm(3);
-
-        sigprocmask(SIG_BLOCK);
-
-        while(1){
-            // UwU
-        }
+        // UwU
     }
 
     return 0;
