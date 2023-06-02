@@ -1,20 +1,21 @@
-// non tutti i thread sono joinable, ma lo sono di default
-// solo un processo può joinarsi con un altro thread
-// per rendere un thread unjoinable rendere il thread detached
-// un thread detached non può diventare joinable, ma non il contrario
-// lo stato si cambia in fase di creazione con .....
-// o con la funzione pthread_detach(thread)
-// quando un segnale viene inviato ad un processo, non c'è modo di sapere
-// quale thread lo riceverà
+// Nota: questo programma va compilato passando il flag -pthread a gcc!
 
 #include <stdio.h>
-#include <threads.h>    // mi sa che non è questa quella che serve
+#include <pthread.h>
+#include <unistd.h>
 
 
-int main(){
+void *my_fun(void *param) {
+    printf("This is a thread that received %d\n", *(int *)param);
+    return (void *)3;
+}
+
+
+int main(void) {
     pthread_t t_id;
-
-
-
-    return 0;
+    int arg = 10;
+    // We need to cast the augment to a void *. We are passing the address of the variable
+    pthread_create(&t_id, NULL, my_fun, (void *)&arg);
+    printf("Executed thread with id %ld\n", t_id);
+    sleep(3);
 }

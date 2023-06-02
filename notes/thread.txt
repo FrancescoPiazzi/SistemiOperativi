@@ -1,0 +1,8 @@
+Quando si crea un nuovo thread, è necessario fornire un puntatore pthread_t, che verrà riempito con il nuovo ID generato.
+attr consente di modificare il comportamento dei thread, mentre start_routine serve a definire quale funzione
+deve essere eseguita dal thread. arg è un puntatore void che può essere utilizzato per passare qualsiasi argomento sia richiesto
+
+Non tutti i thread sono joinable, ma lo sono di default solo un processo può joinarsi con un altro thread
+per rendere un thread unjoinable rendere il thread detached un thread detached non può diventare joinable, ma non il contrario
+lo stato si cambia in fase di creazione con ..... o con la funzione pthread_detach(thread)
+quando un segnale viene inviato ad un processo, non c'è modo di sapere quale thread lo riceverà
