@@ -3,6 +3,8 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
+int unblocksignal = 0;
+
 void my_handler(int signal){
     printf("\nho ricevuo un segnale: %d\n", signal);
     if(signal==SIGINT){
@@ -26,10 +28,7 @@ void alarm_handler(int s){
     printf("sveglia\n");
     printf("sblocco lo user signal 2\n");
 
-    sigset_t st;
-    sigemptyset(&st);
-    sigaddset(&st, SIGUSR2);
-    sigprocmask(SIG_UNBLOCK, &st, NULL);
+    unblocksignal = 1;
 }
 
 
@@ -62,7 +61,13 @@ int main(){
     alarm(10);
 
     while(1){
-        // UwU
+        if(unblocksignal){
+            sigset_t st;
+            sigemptyset(&st);
+            sigaddset(&st, SIGUSR2);
+            sigprocmask(SIG_UNBLOCK, &st, NULL);
+            unblocksignal = 0;
+        }
     }
 
     return 0;
