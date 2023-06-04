@@ -1,0 +1,3 @@
+per vedere le message queue:    ipcs
+per eliminarne una:             ipcrm --queue-id *id della coda*
+per eliminarle (quasi) tutte:   ipcrm --all=msg
