@@ -46,4 +46,6 @@ int main()
         close(pipe2[READ]);
         while (wait(NULL) > 0);
     }
+
+    return 0;
 }
