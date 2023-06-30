@@ -4,16 +4,20 @@
 #include <errno.h>
 
 
-void my_handler(int signal){
-    printf("\nho ricevuo un segnale: %d\n", signal);
+void my_handler(int s, siginfo_t *siginfo, void *garbage){
+    printf("\nho ricevuo un segnale %d da %d\n", s, siginfo->si_pid);
 }
 
 
 int main(){
     printf("pid: %d\n", getpid());
 
-    for(int i=1; i<=64; i++)
-        signal(i, my_handler);
+    struct sigaction sigact;
+    for(int i=1; i<=64; i++){
+        sigact.sa_flags = SA_SIGINFO;
+        sigact.sa_sigaction = my_handler;
+        sigaction(i, &sigact, NULL);
+    }
 
     while(1){
         int pid, signo;
