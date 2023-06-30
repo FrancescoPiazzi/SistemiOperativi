@@ -1,0 +1,8 @@
+main:
+	@if [ ! -d gallina ]; then\
+        mkdir gallina;\
+    fi
+
+	@if [ ! -f gallina/uovo ]; then\
+		cd gallina && touch uovo;\
+	fi
