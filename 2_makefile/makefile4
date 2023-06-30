@@ -1,0 +1,5 @@
+main.c:
+ifeq ("$(wildcard "lel.c")","")
+	touch lel.c
+endif
+	touch main.c
